@@ -35,6 +35,9 @@ class AccidaModel(Model):
     def __init__(self, model):
         self.model = model
 
+    def setup(self):
+        self.model.setup()
+
     def inference(self, _input: AccidaModelInput) -> AccidaModelOutput:
         inference_result, _, _ = self.model.do_inference(_input.image_url, "url")
         return AccidaModelOutput(**inference_result)
@@ -42,6 +45,11 @@ class AccidaModel(Model):
 
 app = FastAPI()
 app.model = AccidaModel(model=CarDamageDetectionModel(model_version="4.0.0"))
+
+
+@app.on_event("startup")
+async def startup():
+    app.model.setup()
 
 
 @app.post("/inference", response_model=AccidaModelOutput)

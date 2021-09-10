@@ -145,3 +145,4 @@ cython_debug/
 *.tar.gz
 assets/
 *.json
+*.pkl
