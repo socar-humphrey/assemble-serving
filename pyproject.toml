@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "ass-serving"
+version = "0.1.0"
+description = ""
+authors = ["socar-humphrey <humphrey@socar.kr>"]
+
+[tool.poetry.dependencies]
+python = ">=3.7,<3.8"
+fastapi = "^0.68.1"
+uvicorn = "^0.15.0"
+BentoML = "^0.13.1"
+damage-detection-model = {path = "damage_detection_model-4.0.2.tar.gz"}
+
+[tool.poetry.dev-dependencies]
+
+[[tool.poetry.source]]
+name = "dev"
+url = "https://pypi.socar-data.socar.me/simple/"
+secondary = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
